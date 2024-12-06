@@ -21,7 +21,7 @@
                 x-init="$watch('indeterminateCheckbox', value => $el.indeterminate = value); $watch('selectedItems', value => newSelectCount = value.length);"
                 x-on:click="if(selectedItems.length == paginationTotalItemCount) {
                     $el.indeterminate = false;
-                    clearSelected();
+                    $wire.clearSelected();
                     bulkActionHeaderChecked = false;
                 } else {
                     bulkActionHeaderChecked = true;
