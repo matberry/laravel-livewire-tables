@@ -13,6 +13,11 @@ function tableWrapper() {
         delaySelectAll: wire.entangle('delaySelectAll'),
         hideBulkActionsWhenEmpty: wire.entangle('hideBulkActionsWhenEmpty'),
         toggleSelectAll() {
+            console.log('toggleSelectAll called', {
+                delaySelectAll: this.delaySelectAll,
+                selectedItems: this.selectedItems,
+                paginationTotalItemCount: this.paginationTotalItemCount
+            });
             if (!showBulkActionsAlpine) {
                 return;
             }
@@ -21,10 +26,11 @@ function tableWrapper() {
                 this.clearSelected();
                 this.selectAllStatus = false;
             } else {
-                wire.setAllSelected();
+                this.setAllSelected();
             }
         },
         setAllItemsSelected() {
+            console.log('setAllItemsSelected called');
             if (!showBulkActionsAlpine) {
                 return;
             }
@@ -32,20 +38,21 @@ function tableWrapper() {
             this.selectAllOnPage();
         },
         setAllSelected() {
+            console.log('setAllSelected called', {
+                delaySelectAll: this.delaySelectAll
+            });
             if (!showBulkActionsAlpine) {
                 return;
             }
-            if (this.delaySelectAll)
-            {
+            if (this.delaySelectAll) {
                 this.selectAllStatus = true;
                 this.selectAllOnPage();
-            }
-            else
-            {
+            } else {
                 wire.setAllSelected();
             }
         },
         clearSelected() {
+            console.log('clearSelected called');
             if (!showBulkActionsAlpine) {
                 return;
             }
@@ -53,6 +60,10 @@ function tableWrapper() {
             wire.clearSelected();
         },
         selectAllOnPage() {
+            console.log('selectAllOnPage called', {
+                currentItems: this.paginationCurrentItems,
+                selectedItems: this.selectedItems
+            });
             if (!showBulkActionsAlpine) {
                 return;
             }
