@@ -19,7 +19,15 @@
         >
             <input
                 x-init="$watch('indeterminateCheckbox', value => $el.indeterminate = value); $watch('selectedItems', value => newSelectCount = value.length);"
-                x-on:click="if(selectedItems.length == paginationTotalItemCount) { $el.indeterminate = false; $wire.clearSelected(); bulkActionHeaderChecked = false; } else { bulkActionHeaderChecked = true; $el.indeterminate = false; $wire.setAllSelected(); }"
+                x-on:click="if(selectedItems.length == paginationTotalItemCount) {
+                    $el.indeterminate = false;
+                    clearSelected();
+                    bulkActionHeaderChecked = false;
+                } else {
+                    bulkActionHeaderChecked = true;
+                    $el.indeterminate = false;
+                    setAllSelected();
+                }"
                 type="checkbox"
                 :checked="selectedItems.length == paginationTotalItemCount"
                 {{
