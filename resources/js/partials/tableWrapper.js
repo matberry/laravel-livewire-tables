@@ -21,14 +21,7 @@ function tableWrapper() {
                 this.clearSelected();
                 this.selectAllStatus = false;
             } else {
-                if (this.delaySelectAll)
-                {   
-                    this.setAllItemsSelected();
-                }
-                else
-                {
-                    this.setAllSelected();
-                }
+                wire.setAllSelected();
             }
         },
         setAllItemsSelected() {
@@ -43,7 +36,7 @@ function tableWrapper() {
                 return;
             }
             if (this.delaySelectAll)
-            {   
+            {
                 this.selectAllStatus = true;
                 this.selectAllOnPage();
             }
